@@ -21,7 +21,10 @@ var FSTYPE_IGNORE = map[string]struct{}{
 	"configfs":   struct{}{},
 	"hugetlbfs":  struct{}{},
 	"tmpfs":  	  struct{}{},
+	"nfs":  	  struct{}{},
+	"nsfs":  	  struct{}{},
 	"ramfs":  	  struct{}{},
+	"javafs":  	  struct{}{},
 	"mqueue":  	  struct{}{},
 }
 

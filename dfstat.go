@@ -17,6 +17,12 @@ var FSTYPE_IGNORE = map[string]struct{}{
 	"devtmpfs":   struct{}{},
 	"rpc_pipefs": struct{}{},
 	"rootfs":     struct{}{},
+	"autofs":     struct{}{},
+	"configfs":   struct{}{},
+	"hugetlbfs":  struct{}{},
+	"tmpfs":  	  struct{}{},
+	"ramfs":  	  struct{}{},
+	"mqueue":  	  struct{}{},
 }
 
 var FSFILE_PREFIX_IGNORE = []string{

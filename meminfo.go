@@ -4,21 +4,23 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/toolkits/file"
 	"io"
 	"io/ioutil"
 	"strconv"
 	"strings"
+
+	"github.com/toolkits/file"
 )
 
 type Mem struct {
-	Buffers   uint64
-	Cached    uint64
-	MemTotal  uint64
-	MemFree   uint64
-	SwapTotal uint64
-	SwapUsed  uint64
-	SwapFree  uint64
+	Buffers   		uint64
+	Cached    		uint64
+	MemTotal  		uint64
+	MemFree   		uint64
+	SwapTotal 		uint64
+	SwapUsed  		uint64
+	SwapFree  		uint64
+	MemAvailable	uint64
 }
 
 func (this *Mem) String() string {
@@ -28,12 +30,13 @@ func (this *Mem) String() string {
 var Multi uint64 = 1024
 
 var WANT = map[string]struct{}{
-	"Buffers:":   struct{}{},
-	"Cached:":    struct{}{},
-	"MemTotal:":  struct{}{},
-	"MemFree:":   struct{}{},
-	"SwapTotal:": struct{}{},
-	"SwapFree:":  struct{}{},
+	"Buffers:":   	struct{}{},
+	"Cached:":    	struct{}{},
+	"MemTotal:":  	struct{}{},
+	"MemFree:":   	struct{}{},
+	"SwapTotal:": 	struct{}{},
+	"SwapFree:":  	struct{}{},
+	"MemAvailable":	struct{}{},
 }
 
 func MemInfo() (*Mem, error) {
@@ -42,7 +45,9 @@ func MemInfo() (*Mem, error) {
 		return nil, err
 	}
 
-	memInfo := &Mem{}
+	memInfo := &Mem{
+		MemAvailable: -1,
+	}
 
 	reader := bufio.NewReader(bytes.NewBuffer(contents))
 
@@ -77,6 +82,8 @@ func MemInfo() (*Mem, error) {
 				memInfo.SwapTotal = val * Multi
 			case "SwapFree:":
 				memInfo.SwapFree = val * Multi
+			case "MemAvailable":
+				memInfo.MemAvailable = val * Multi
 			}
 		}
 	}

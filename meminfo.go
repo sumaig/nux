@@ -45,9 +45,7 @@ func MemInfo() (*Mem, error) {
 		return nil, err
 	}
 
-	memInfo := &Mem{
-		MemAvailable: -1,
-	}
+	memInfo := &Mem{}
 
 	reader := bufio.NewReader(bytes.NewBuffer(contents))
 

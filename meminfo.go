@@ -80,7 +80,7 @@ func MemInfo() (*Mem, error) {
 				memInfo.SwapTotal = val * Multi
 			case "SwapFree:":
 				memInfo.SwapFree = val * Multi
-			case "MemAvailable":
+			case "MemAvailable:":
 				memInfo.MemAvailable = val * Multi
 			}
 		}

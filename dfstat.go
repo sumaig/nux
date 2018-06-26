@@ -20,7 +20,6 @@ var FSTYPE_IGNORE = map[string]struct{}{
 	"autofs":     struct{}{},
 	"configfs":   struct{}{},
 	"hugetlbfs":  struct{}{},
-	"tmpfs":  	  struct{}{},
 	"nfs":  	  struct{}{},
 	"nsfs":  	  struct{}{},
 	"ramfs":  	  struct{}{},
